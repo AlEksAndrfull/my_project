@@ -1,7 +1,7 @@
 def get_mask_card_number(card_number: int) -> str:
     """
     Возвращает маску номера банковской карты.
-
+    
     Параметры:
     card_number (int): Номер карты.
 
