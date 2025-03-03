@@ -17,6 +17,7 @@ def mask_account_card(info: str) -> str:
     else:
         return f"{number[:4]} {number[4:6]}** **** {number[-4:]}"  # маскировка номера карты
 
+    
 def get_date(date_str: str) -> str:
     """
     Преобразует строку с датой из формата ISO в формат "ДД.ММ.ГГГГ".
@@ -30,6 +31,7 @@ def get_date(date_str: str) -> str:
     from datetime import datetime
     date_obj = datetime.fromisoformat(date_str)
     return date_obj.strftime("%d.%m.%Y")
+
 
 if __name__ == "__main__":
     # Примеры использования функций
