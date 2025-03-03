@@ -17,7 +17,6 @@ def sort_by_date(transactions: List[Dict[str, str]], descending: bool = True) ->
     Сортирует список операций по дате.
 
     :param transactions: Список словарей с данными о банковских операциях.
-    :param descending: Логическое значение, определяющее порядок сортировки (по умолчанию по убыванию).
     :return: Новый список словарей, отсортированный по дате.
     """
     return sorted(transactions, key=lambda x: x['date'], reverse=descending)
