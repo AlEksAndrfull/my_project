@@ -4,7 +4,7 @@ from src.generators import (card_number_generator, filter_by_currency,
 
 
 @pytest.fixture
-def sample_transactions():
+def sample_transactions() -> list[dict]:
     return [
         {
             "id": 939719570,
@@ -45,8 +45,7 @@ def sample_transactions():
     ]
 
 
-def test_filter_by_currency(sample_transactions):
-    # Ожидаем, что в тестовых данных есть 2 транзакции с USD и 1 с RUB
+def test_filter_by_currency(sample_transactions: list[dict]) -> None:
     usd_transactions = list(filter_by_currency(sample_transactions, "USD"))
     assert len(usd_transactions) == 2
 
@@ -54,7 +53,7 @@ def test_filter_by_currency(sample_transactions):
     assert len(rub_transactions) == 1
 
 
-def test_card_number_generator():
+def test_card_number_generator() -> None:
     card_numbers = list(card_number_generator(1, 5))
     expected_numbers = [
         "0000 0000 0000 0001",
@@ -68,7 +67,7 @@ def test_card_number_generator():
     )
 
 
-def test_transaction_descriptions(sample_transactions):
+def test_transaction_descriptions(sample_transactions: list[dict]) -> None:
     descriptions = list(transaction_descriptions(sample_transactions))
     assert descriptions == [
         "Перевод организации",
