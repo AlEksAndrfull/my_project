@@ -1,6 +1,6 @@
 import pytest
-from src.generators import (card_number_generator, filter_by_currency,
-                            transaction_descriptions)
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 @pytest.fixture
@@ -45,23 +45,38 @@ def sample_transactions() -> list[dict]:
     ]
 
 
-def test_filter_by_currency(sample_transactions: list[dict]) -> None:
-    usd_transactions = list(filter_by_currency(sample_transactions, "USD"))
-    assert len(usd_transactions) == 2
-
-    rub_transactions = list(filter_by_currency(sample_transactions, "RUB"))
-    assert len(rub_transactions) == 1
-
-
-def test_card_number_generator() -> None:
-    card_numbers = list(card_number_generator(1, 5))
-    expected_numbers = [
-        "0000 0000 0000 0001",
-        "0000 0000 0000 0002",
-        "0000 0000 0000 0003",
-        "0000 0000 0000 0004",
-        "0000 0000 0000 0005"
+@pytest.mark.parametrize(
+    "currency_code, expected_count",
+    [
+        ("USD", 2),
+        ("RUB", 1),
+        ("EUR", 0),  # Проверяем валюту, которой нет в тестовых данных
     ]
+)
+def test_filter_by_currency(sample_transactions: list[dict], currency_code: str, expected_count: int) -> None:
+    transactions = list(filter_by_currency(sample_transactions, currency_code))
+    assert len(transactions) == expected_count
+
+
+@pytest.mark.parametrize(
+    "start, stop, expected_numbers",
+    [
+        (1, 5, [
+            "0000 0000 0000 0001",
+            "0000 0000 0000 0002",
+            "0000 0000 0000 0003",
+            "0000 0000 0000 0004",
+            "0000 0000 0000 0005"
+        ]),
+        (10, 12, [
+            "0000 0000 0000 0010",
+            "0000 0000 0000 0011",
+            "0000 0000 0000 0012"
+        ]),
+    ]
+)
+def test_card_number_generator(start: int, stop: int, expected_numbers: list[str]) -> None:
+    card_numbers = list(card_number_generator(start, stop))
     assert card_numbers == expected_numbers, (
         f"Expected {expected_numbers}, but got {card_numbers}"
     )
@@ -69,8 +84,9 @@ def test_card_number_generator() -> None:
 
 def test_transaction_descriptions(sample_transactions: list[dict]) -> None:
     descriptions = list(transaction_descriptions(sample_transactions))
-    assert descriptions == [
+    expected_descriptions = [
         "Перевод организации",
         "Перевод со счета на счет",
         "Перевод со счета на счет"
     ]
+    assert descriptions == expected_descriptions
