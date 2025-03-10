@@ -1,26 +1,24 @@
-def get_mask_card_number(card_number: int) -> str:
+def get_mask_card_number(card_number: str) -> str:
     """
     Возвращает маску номера банковской карты.
-    
     Параметры:
-    card_number (int): Номер карты.
-
+    card_number (str): Номер карты.
     Возвращает:
-    str: Замаскированный номер карты по формату XXXX XX** **** XXXX.
+    str: Замаскированный номер карты по формату XXXX XX** **** XXXX или сообщение об ошибке.
     """
-    card_str = str(card_number)
-    return f"{card_str[:4]} {card_str[4:6]}** **** {card_str[-4:]}"
+    if not card_number.isdigit() or len(card_number) != 16:
+        return "Некорректный ввод"
+    return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
 
 
-def get_mask_account(account_number: int) -> str:
+def get_mask_account(account_number: str) -> str:
     """
     Возвращает маску номера банковского счета.
-
     Параметры:
-    account_number (int): Номер счета.
-
+    account_number (str): Номер счета.
     Возвращает:
-    str: Замаскированный номер счета по формату **XXXX.
+    str: Замаскированный номер счета по формату **XXXX или сообщение об ошибке.
     """
-    account_str = str(account_number)
-    return f"**{account_str[-4:]}"
+    if not account_number.isdigit() or len(account_number) < 4:
+        return "Некорректный ввод"
+    return f"**{account_number[-4:]}"
