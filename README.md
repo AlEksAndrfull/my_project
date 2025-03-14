@@ -53,10 +53,26 @@ pytest
 ### Примеры тестов
 Все тесты используют фикстуры для создания тестовых данных и параметризацию для проверки различных случаев.
 
-### Шаг 7: Отправка изменений на удаленный репозиторий
+# Шаг 7 Модуль для работы с транзакциями
+
+## Функции
+
+### filter_by_currency(transactions: List[Dict], currency_code: str) -> Iterator[Dict]
+
+Фильтрует транзакции по указанной валюте.
+
+#### Пример использования:
+
+transactions = [...]  # Список транзакций
+usd_transactions = filter_by_currency(transactions, "USD")
+for transaction in usd_transactions:
+    print(transaction)
+
+### Шаг 8: Отправка изменений на удаленный репозиторий
 
 git push origin main
 git push origin feature/homework_10_1
 git push origin feature/homework_10_2
+git push origin feature/homework_11_1
 git push origin develop
 
