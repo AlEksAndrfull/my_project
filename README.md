@@ -68,11 +68,22 @@ usd_transactions = filter_by_currency(transactions, "USD")
 for transaction in usd_transactions:
     print(transaction)
 
-### Шаг 8: Отправка изменений на удаленный репозиторий
+# Шаг 8 Модуль для работы с транзакциями
+
+Эта чатсь  проектапредназначена для обработки финансовых транзакций, 
+хранящихся в формате JSON, и конвертации валют из USD и EUR в рубли. 
+Он использует API для получения актуальных курсов валют и предоставляет 
+функции для чтения данных из JSON-файлов и конвертации сумм транзакций.
+
+## Структура проекта
+
+### Шаг 9: Отправка изменений на удаленный репозиторий
 
 git push origin main
 git push origin feature/homework_10_1
 git push origin feature/homework_10_2
 git push origin feature/homework_11_1
+git push origin feature/homework_12_1
+
 git push origin develop
 
