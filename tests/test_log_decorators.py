@@ -2,7 +2,7 @@ from typing import Any
 
 import pytest
 
-from my_project.src.log_decorators import log
+from src.log_decorators import log
 
 
 @log()
