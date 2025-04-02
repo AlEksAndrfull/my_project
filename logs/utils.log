@@ -1,3 +1,0 @@
-2025-04-02 21:53:11,471 - utils - INFO - Успешно прочитан файл data/operations.json.
-2025-04-02 21:53:11,471 - utils - WARNING - Файл data/non_existent.json не найден.
-2025-04-02 21:53:11,471 - utils - WARNING - Файл data/empty.json не найден.
